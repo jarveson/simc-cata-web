@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+dist/
+.cache/
+.parcel-cache/
+/engine/*
+!/engine/README.md
+__pycache__
