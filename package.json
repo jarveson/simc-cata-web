@@ -1,0 +1,43 @@
+{
+  "name": "simc-cata",
+  "version": "1.0.0",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "repository": "",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/lab": "^5.0.0-alpha.170",
+    "@mui/material": "^5.15.15",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-inspector": "^6.0.2",
+    "tailwindcss": "^3.4.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.4",
+    "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.0",
+    "eslint": "^9.0.0",
+    "events": "^3.3.0",
+    "os-browserify": "^0.3.0",
+    "parcel": "^2.12.0",
+    "parcel-reporter-static-files-copy": "^1.5.3",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
+    "rimraf": "^5.0.5",
+    "stream-browserify": "^3.0.0",
+    "string_decoder": "^1.3.0",
+    "typescript": "^5.4.5",
+    "vm-browserify": "^1.1.2"
+  },
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "rimraf dist && parcel build src/index.html",
+    "lint": "eslint src/ --ext jsx --ext js",
+    "fix": "eslint src/ --ext jsx --ext js --fix"
+  }
+}
