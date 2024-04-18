@@ -1,5 +1,5 @@
 export enum SimStatus {
-    Loading = 1,
-    Idle,
-    Simulating,
+  Loading = 1,
+  Idle,
+  Simulating,
 };

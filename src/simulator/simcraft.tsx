@@ -11,10 +11,13 @@ enum Status {
 };
 
 type ProgressFn = (progress: SimProgress) => void;
+type PrintFn = (txt: string) => void;
 
 type SimJob = {
   profile: string,
   progressCallback: ProgressFn | null,
+  onPrint: PrintFn | null;
+  onPrintErr: PrintFn | null;
   resolve: (result: SimOutputData) => void,
   reject: (err: string) => void,
 };
@@ -50,8 +53,7 @@ export default class Simcraft {
       //this.fillWorkerPool(null); // spawn the remaing workers after the first
       return newState;
     }
-
-    if (data.event === 'done') {
+    else if (data.event === 'done') {
       if (!worker.currentJob) {
         console.error('Invalid state transition.');
         return Status.Idle;
@@ -60,8 +62,7 @@ export default class Simcraft {
       worker.currentJob = null;
       return this.scheduleWorker(worker);
     }
-
-    if (data.event === 'failed') {
+    else if (data.event === 'failed') {
       if (!worker.currentJob) {
         console.error('Invalid state transition.');
         return Status.Idle;
@@ -70,15 +71,24 @@ export default class Simcraft {
       worker.currentJob = null;
       return this.scheduleWorker(worker);
     }
-
-    if (data.event === 'progressUpdate') {
+    else if (data.event === 'progressUpdate') {
       if (worker.currentJob && worker.currentJob.progressCallback) {
         worker.currentJob.progressCallback(data.progress);
       }
       return Status.Simulating;
     }
+    else if (data.event === 'print') {
+      if (worker.currentJob?.onPrint)
+        worker.currentJob.onPrint(data.str);
+      return Status.Simulating;
+    }
+    else if (data.event === 'printErr') {
+      if (worker.currentJob?.onPrintErr)
+        worker.currentJob.onPrintErr(data.str);
+      return Status.Simulating;
+    }
 
-    console.error('Unvalid message from sim_worker.');
+    console.error('Invalid message from sim_worker.');
     return Status.Unloaded;
   }
 
@@ -92,7 +102,7 @@ export default class Simcraft {
 
     for (let i = 0; i < missing; i += 1) {
       const worker = {
-        worker: new Worker(new URL('sim_worker.ts', import.meta.url), {type:'module'}),
+        worker: new Worker(new URL('sim_worker.ts', import.meta.url), { type: 'module' }),
         status: Status.Loading,
         progressCallback: null,
         currentJob: null,
@@ -133,11 +143,13 @@ export default class Simcraft {
     worker.worker.postMessage(job.profile);
   };
 
-  addJob = (profile: string, progressCallback: ProgressFn | null): Promise<SimOutputData> => {
+  addJob = (profile: string, progressCallback: ProgressFn | null, onPrint: PrintFn | null, onPrintErr: PrintFn | null): Promise<SimOutputData> => {
     const promise = new Promise<SimOutputData>((resolve, reject) => {
       this.pendingJobs.push({
         profile,
         progressCallback,
+        onPrint,
+        onPrintErr,
         resolve,
         reject,
       });

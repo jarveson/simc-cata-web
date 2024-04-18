@@ -38,7 +38,16 @@ export type MsgFailed = {
   error: string,
 };
 
-export type SimMsg = MsgLoaded | MsgProgress | MsgDone | MsgFailed;
+export type MsgPrint = {
+  event: 'print',
+  str: string,
+};
+export type MsgPrintErr = {
+  event: 'printErr',
+  str: string,
+};
+
+export type SimMsg = MsgLoaded | MsgProgress | MsgDone | MsgFailed | MsgPrint | MsgPrintErr;
 
 function instantiateWithFallback(url: string, importObject: WebAssembly.Imports): Promise<WebAssembly.WebAssemblyInstantiatedSource> {
   if (typeof WebAssembly.instantiateStreaming === 'function') {
@@ -67,8 +76,16 @@ function instantiateWithFallback(url: string, importObject: WebAssembly.Imports)
     return "./" + path;
   },
   instantiateWasm: (imports, onSuccess) => {
-    instantiateWithFallback('/engine.wasm', imports).then((arg)=>onSuccess(arg.instance, arg.module));
+    instantiateWithFallback('/engine.wasm', imports).then((arg) => onSuccess(arg.instance, arg.module));
   },
+  print: (txt) => {
+    self.postMessage({ event: 'print', str: txt + '\n' });
+    console.log("print: ", txt);
+  },
+  printErr: (txt) => {
+    self.postMessage({ event: 'printErr', str: txt + '\n' });
+    console.error("err: ", txt);
+  }
 };
 
 const simulate = (sim: any, profile: string): SimOutputData => {
@@ -82,10 +99,10 @@ const simulate = (sim: any, profile: string): SimOutputData => {
   if (!sim._simulate(ptrIn))
     return rtn;
 
-  rtn.json = sim.FS.readFile('/output.json', {encoding:'utf8'});
-  rtn.html = sim.FS.readFile('/output.html', {encoding:'utf8'});
-  rtn.raw = sim.FS.readFile('/output.txt', {encoding:'utf8'});
-  
+  rtn.json = sim.FS.readFile('/output.json', { encoding: 'utf8' });
+  rtn.html = sim.FS.readFile('/output.html', { encoding: 'utf8' });
+  rtn.raw = sim.FS.readFile('/output.txt', { encoding: 'utf8' });
+
   sim._free(ptrIn);
   sim.FS.unlink('/output.json');
   sim.FS.unlink('/output.html');

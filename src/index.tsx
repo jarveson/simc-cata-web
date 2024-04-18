@@ -4,9 +4,9 @@ import App from './app';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const defaultTheme = createTheme({
-    palette: {
-        mode:'dark'
-    }
+  palette: {
+    mode: 'dark'
+  }
 });
 
 const mountNode = document.getElementById('app');

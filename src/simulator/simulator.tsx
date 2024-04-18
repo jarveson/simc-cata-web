@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Simcraft from './simcraft';
 import type { SimProgress } from './simcraft';
 import { SimOutputData } from './sim_worker';
-import ResultsView from './resultview';
 import ProfileInput from './profileinput';
 import { SimStatus } from './simstatus';
 import SimProgressBar from './progress';
+import { TabContext, TabList, TabPanel } from '@mui/lab';
+import { ObjectInspector } from 'react-inspector';
+import { Alert, Box, Paper, Tab, TextField } from '@mui/material';
+import MonoTextView from './monotextview';
 
 type Props = {
   simc: Simcraft,
@@ -18,69 +21,118 @@ type State = {
   status: SimStatus,
 };
 
-class Simulator extends React.Component<Props, State> {
-  constructor(props) {
-    super(props);
+export default function Simulator(props: Props) {
+  const [profile, setProfile] = useState('');
+  const [result, setResult] = useState(undefined as SimOutputData | undefined);
+  const [progress, setProgress] = useState(undefined as SimProgress | undefined);
+  const [status, setStatus] = useState(SimStatus.Loading);
+  const [print, setPrint] = useState('');
+  const [printErr, setPrintErr] = useState('');
 
-    this.state = {
-      profile: '',
-      result: undefined,
-      progress: undefined,
-      status: SimStatus.Loading,
-    };
+  const [tabValue, setTabValue] = useState('1');
+  const [tab2Value, setTab2Value] = useState('1');
 
-    if (!props.simc.loaded)
-      props.simc.onLoad = () => { this.setState({status: SimStatus.Idle })};
-  }
+  const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
+    setTabValue(newValue);
+  };
+  const handleTab2Change = (event: React.SyntheticEvent, newValue: string) => {
+    setTab2Value(newValue);
+  };
 
-  profileHandler = (profile: string) => {
-    if (this.state.status !== SimStatus.Idle)
+  if (!props.simc.loaded)
+    props.simc.onLoad = () => { setStatus(SimStatus.Idle) };
+
+  const profileHandler = (profile: string) => {
+    if (status !== SimStatus.Idle)
       return;
-    this.setState({ profile: profile });
+    setProfile(profile);
   }
 
-  buttonHandler = () => {
-    if (this.state.status !== SimStatus.Idle)
+  const buttonHandler = () => {
+    if (status !== SimStatus.Idle)
       return;
-    const { simc } = this.props;
-    simc.addJob(this.state.profile, (progress) => {
-        this.setState({ progress: progress });
-      }).then((result) => {
-        this.setState({ status: SimStatus.Idle, result: result });
-      }, (err) => {
-        this.setState({ status: SimStatus.Idle });
-        console.warn(err);
-    });
-    this.setState({ status: SimStatus.Simulating, result: undefined, progress: undefined });
-  }
 
-  render = () => {
-    const {
-      profile,
-      result,
-      status,
-      progress,
-    } = this.state;
-    let output;
-
-    if (result && status === SimStatus.Idle && 'sim' in result?.json) {
-      output = <ResultsView results={result}/>
-    } else if (progress && status === SimStatus.Simulating && 'iteration' in progress) {
-      output = <SimProgressBar progress={progress}/>
-    }
-
-    return (
-      <>
-      <ProfileInput 
-        onChange={this.profileHandler} 
-        profile={profile} 
-        simStatus={status}
-        runSim={this.buttonHandler}
-      />
-      {output}
-      </>
+    const { simc } = props;
+    let promise = simc.addJob(profile, (progress) => {
+      setProgress(progress);
+    },
+      (print) => {
+        setPrint((p) => p += print);
+      },
+      (printErr) => {
+        setPrintErr((p) => p += printErr);
+      },
     );
-  }
-}
 
-export default Simulator;
+    promise.then((result) => {
+      setStatus(SimStatus.Idle);
+      setResult(result);
+      setTabValue('2');
+    }, (err) => {
+      setStatus(SimStatus.Idle);
+      console.warn(err);
+    });
+    setStatus(SimStatus.Simulating);
+    setResult(undefined);
+    setProgress(undefined);
+    setPrint('');
+    setPrintErr('');
+  }
+
+  const haveResults = result && status == SimStatus.Idle;
+  const haveError = !result && status == SimStatus.Idle && printErr != '';
+  return (
+    <Box sx={{ height: '100vh', width: '100%', typography: 'body1' }}>
+      <TabContext value={tabValue}>
+        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+          <TabList onChange={handleTabChange} aria-label="Results View">
+            <Tab label="Run" value="1" />
+            <Tab label="Html" value="2" disabled={!haveResults} />
+            <Tab label="Json" value="3" disabled={!haveResults} />
+            <Tab label="Raw" value="4" disabled={!haveResults} />
+          </TabList>
+        </Box>
+        <TabPanel value="1" className='overflow-auto h-[95%]'>
+          {progress && status == SimStatus.Simulating && <SimProgressBar progress={progress} />}
+          {haveError && <Alert variant="outlined" severity="error">Error! Check Log</Alert>}
+          <TabContext value={tab2Value}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+              <TabList onChange={handleTab2Change} aria-label="Results View">
+                <Tab label="Profile" value="1" />
+                <Tab label="Error Log" value="2" />
+                <Tab label="Debug Log" value="3" />
+              </TabList>
+            </Box>
+            <TabPanel value="1" className='overflow-auto'>
+              <ProfileInput
+                onChange={profileHandler}
+                profile={profile}
+                simStatus={status}
+                runSim={buttonHandler}
+              />
+            </TabPanel>
+            <TabPanel value="2" className='overflow-auto'>
+              <MonoTextView value={printErr} />
+            </TabPanel>
+            <TabPanel value="3" className='overflow-auto'>
+              <MonoTextView value={print} />
+            </TabPanel>
+          </TabContext>
+        </TabPanel>
+        <TabPanel value="2" className='overflow-auto h-[95%]'>
+          <iframe
+            className='h-[95%] w-full fixed border-none top-12 inset-x-0 bottom-0'
+            sandbox='allow-scripts'
+            srcDoc={result?.html}
+          />
+        </TabPanel>
+        <TabPanel value="3" className='overflow-auto h-[95%]'>
+          <ObjectInspector name="Simulation" theme="chromeDark" data={result?.json} expandPaths={['$', '$.sim', '$.sim.statistics']} />
+        </TabPanel>
+        <TabPanel value="4" className='overflow-auto h-[95%]'>
+          <MonoTextView value={result?.raw} />
+        </TabPanel>
+      </TabContext>
+    </Box>
+  );
+}
