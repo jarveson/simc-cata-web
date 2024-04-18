@@ -144,7 +144,7 @@ ranged=,id=47668,gem_id=40114
 
 # Checksum: 74f28422`;
 
-export let profileScaleStats = 
+export let profileScaleStats =
 `# Jaxek - Feral - 2024-04-09 00:39 - TR/Classic Beta PvE
 # SimC Addon 4.4.0-01
 # WoW 4.4.0.54137, TOC 40400
@@ -158,10 +158,11 @@ server=classic_beta_pve
 role=attack
 professions=engineering=450/mining=450
 spec=feral
-scale_only=agility,crit,mastery,haste,hit_rating,exp_rating
+scale_only=agility,crit,mastery,haste,hit_rating,expertise_rating
 calculate_scale_factors=1
 
-iterations=20000
+iterations=10000
+target_error=0.05
 
 talents=-2320322312012021222301-
 glyphs=62969/54815/54818

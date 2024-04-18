@@ -94,7 +94,7 @@ const simulate = (sim: any, profile: string): SimOutputData => {
     json: '',
     raw: '',
   };
-  profile = "\n### Default Options ###\niterations=1000\nthreads=1\njson=/output.json,full_states=1,pretty_print=1\n ### End ### \n" + profile;
+  profile = "\n### Default Options ###\niterations=5000\ntarget_error=0.05\nthreads=8\njson=/output.json,full_states=1,pretty_print=1\n ### End ### \n" + profile;
   const ptrIn = sim.allocateUTF8(profile);
   if (!sim._simulate(ptrIn))
     return rtn;

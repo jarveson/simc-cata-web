@@ -4,10 +4,9 @@ import type { SimProgress } from './simcraft';
 import { SimOutputData } from './sim_worker';
 import ProfileInput from './profileinput';
 import { SimStatus } from './simstatus';
-import SimProgressBar from './progress';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { ObjectInspector } from 'react-inspector';
-import { Alert, Box, Paper, Tab, TextField } from '@mui/material';
+import { Alert, Box, Tab } from '@mui/material';
 import MonoTextView from './monotextview';
 
 type Props = {
@@ -80,7 +79,7 @@ export default function Simulator(props: Props) {
   }
 
   const haveResults = result && status == SimStatus.Idle;
-  const haveError = !result && status == SimStatus.Idle && printErr != '';
+  const haveError = printErr != '';
   return (
     <Box sx={{ height: '100vh', width: '100%', typography: 'body1' }}>
       <TabContext value={tabValue}>
@@ -93,7 +92,6 @@ export default function Simulator(props: Props) {
           </TabList>
         </Box>
         <TabPanel value="1" className='overflow-auto h-[95%]'>
-          {progress && status == SimStatus.Simulating && <SimProgressBar progress={progress} />}
           {haveError && <Alert variant="outlined" severity="error">Error! Check Log</Alert>}
           <TabContext value={tab2Value}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -109,13 +107,14 @@ export default function Simulator(props: Props) {
                 profile={profile}
                 simStatus={status}
                 runSim={buttonHandler}
+                progress={progress}
               />
             </TabPanel>
             <TabPanel value="2" className='overflow-auto'>
-              <MonoTextView value={printErr} />
+              <MonoTextView value={printErr} placeholder='Error log output here' />
             </TabPanel>
             <TabPanel value="3" className='overflow-auto'>
-              <MonoTextView value={print} />
+              <MonoTextView value={print} placeholder='Debug log output here'/>
             </TabPanel>
           </TabContext>
         </TabPanel>
@@ -130,7 +129,7 @@ export default function Simulator(props: Props) {
           <ObjectInspector name="Simulation" theme="chromeDark" data={result?.json} expandPaths={['$', '$.sim', '$.sim.statistics']} />
         </TabPanel>
         <TabPanel value="4" className='overflow-auto h-[95%]'>
-          <MonoTextView value={result?.raw} />
+          <MonoTextView value={result?.raw} placeholder='Raw log output here'/>
         </TabPanel>
       </TabContext>
     </Box>

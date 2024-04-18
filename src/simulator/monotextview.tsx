@@ -3,6 +3,7 @@ import React from "react";
 
 export type MTVProps = {
   value: string | undefined
+  placeholder?: string | undefined
 }
 
 export default function MonoTextView(props: MTVProps) {
@@ -19,7 +20,7 @@ export default function MonoTextView(props: MTVProps) {
         spellCheck='false'
         autoCapitalize='false'
         multiline
-        placeholder="Raw results here"
+        placeholder={props.placeholder}
         value={props.value}
       />
     </Paper>
