@@ -51,98 +51,7 @@ trinket2=,id=47115
 main_hand=,id=50695,enchant_id=3870,gem_id=40114/40114/40114
 # Idol of Mutilation (245)
 ranged=,id=47668,gem_id=40114
-
-### Gear from Bags
-#
-# Furious Gladiator's Dragonhide Helm (238)
-# head=,id=41678,enchant_id=3795,gem_id=41398/40148
-#
-# Geistlord's Punishment Sack (277)
-# head=,id=50713,gem_id=41380/40130
-#
-# Seed of Budding Carnage (239)
-# neck=,id=45945,gem_id=40117
-#
-# The Arbiter's Muse (245)
-# neck=,id=47116
-#
-# Cultist's Bloodsoaked Spaulders (277)
-# shoulder=,id=50646,enchant_id=3852,gem_id=40119/40119
-#
-# Furious Gladiator's Dragonhide Spaulders (238)
-# shoulder=,id=41715,enchant_id=3793,gem_id=40016
-#
-# Cloak of the Silver Covenant (258)
-# back=,id=48673,enchant_id=3294,gem_id=40119
-#
-# Wrathful Gladiator's Cloak of Victory (264)
-# back=,id=51356,enchant_id=3256
-#
-# Sanctified Lasherweave Raiment (264)
-# chest=,id=51141,enchant_id=3330,gem_id=40119/40119
-#
-# Furious Gladiator's Dragonhide Robes (238)
-# chest=,id=41661,enchant_id=3245,gem_id=40044/40014
-#
-# Wrathful Gladiator's Armwraps of Triumph (264)
-# wrist=,id=51370,enchant_id=1600
-#
-# Solar Bindings (252)
-# wrist=,id=45611,enchant_id=3850,gem_id=40119
-#
-# Sanctified Lasherweave Handgrips (264)
-# hands=,id=51144,gem_id=40119
-#
-# Furious Gladiator's Dragonhide Gloves (238)
-# hands=,id=41773,gem_id=40023
-#
-# Furious Gladiator's Belt of Triumph (232)
-# waist=,id=41832,gem_id=40011/44066
-#
-# Belt of the Merciless Killer (258)
-# waist=,id=47112,gem_id=40119/40119/40119
-#
-# Leggings of the Broken Beast (258)
-# legs=,id=46975,enchant_id=3822,gem_id=40119/40119/40119
-#
-# Furious Gladiator's Dragonhide Legguards (238)
-# legs=,id=41667,enchant_id=3853,gem_id=40045/40011
-#
-# Relentless Gladiator's Boots of Triumph (245)
-# feet=,id=41837,enchant_id=3826,gem_id=40127
-#
-# Treads of the Icewalker (258)
-# feet=,id=47077,enchant_id=3232,gem_id=40119/40119
-#
-# Abomination's Bloody Ring (264)
-# finger1=,id=51913,gem_id=40119
-#
-# Ashen Band of Endless Courage (277)
-# finger1=,id=50404,gem_id=40119
-#
-# Bitter Balebrew Charm (200)
-# trinket1=,id=49116
-#
-# Medallion of the Alliance (264)
-# trinket1=,id=51377
-#
-# Glyph of Indomitability (245)
-# trinket1=,id=47735
-#
-# Satrina's Impeding Scarab (245)
-# trinket1=,id=47080
-#
-# Mastercraft Kalu'ak Fishing Pole (200)
-# main_hand=,id=44050,enchant_id=846
-#
-# Distant Land (277)
-# main_hand=,id=50695,enchant_id=3789,gem_id=40117/40117/40125
-
-### Additional Character Info
-#
-# upgrade_currencies=
-
-# Checksum: 74f28422`;
+`;
 
 export let profileScaleStats =
 `# Jaxek - Feral - 2024-04-09 00:39 - TR/Classic Beta PvE
@@ -203,95 +112,35 @@ trinket2=,id=47115
 main_hand=,id=50695,enchant_id=3870,gem_id=40114/40114/40114
 # Idol of Mutilation (245)
 ranged=,id=47668,gem_id=40114
+`;
+export let profile85Preraid =
+`
+druid="Jaxek"
+level=85
+race=night_elf
+region=tr
+server=classic_beta_pve
+role=attack
+professions=engineering=450/mining=450
+spec=feral
 
-### Gear from Bags
-#
-# Furious Gladiator's Dragonhide Helm (238)
-# head=,id=41678,enchant_id=3795,gem_id=41398/40148
-#
-# Geistlord's Punishment Sack (277)
-# head=,id=50713,gem_id=41380/40130
-#
-# Seed of Budding Carnage (239)
-# neck=,id=45945,gem_id=40117
-#
-# The Arbiter's Muse (245)
-# neck=,id=47116
-#
-# Cultist's Bloodsoaked Spaulders (277)
-# shoulder=,id=50646,enchant_id=3852,gem_id=40119/40119
-#
-# Furious Gladiator's Dragonhide Spaulders (238)
-# shoulder=,id=41715,enchant_id=3793,gem_id=40016
-#
-# Cloak of the Silver Covenant (258)
-# back=,id=48673,enchant_id=3294,gem_id=40119
-#
-# Wrathful Gladiator's Cloak of Victory (264)
-# back=,id=51356,enchant_id=3256
-#
-# Sanctified Lasherweave Raiment (264)
-# chest=,id=51141,enchant_id=3330,gem_id=40119/40119
-#
-# Furious Gladiator's Dragonhide Robes (238)
-# chest=,id=41661,enchant_id=3245,gem_id=40044/40014
-#
-# Wrathful Gladiator's Armwraps of Triumph (264)
-# wrist=,id=51370,enchant_id=1600
-#
-# Solar Bindings (252)
-# wrist=,id=45611,enchant_id=3850,gem_id=40119
-#
-# Sanctified Lasherweave Handgrips (264)
-# hands=,id=51144,gem_id=40119
-#
-# Furious Gladiator's Dragonhide Gloves (238)
-# hands=,id=41773,gem_id=40023
-#
-# Furious Gladiator's Belt of Triumph (232)
-# waist=,id=41832,gem_id=40011/44066
-#
-# Belt of the Merciless Killer (258)
-# waist=,id=47112,gem_id=40119/40119/40119
-#
-# Leggings of the Broken Beast (258)
-# legs=,id=46975,enchant_id=3822,gem_id=40119/40119/40119
-#
-# Furious Gladiator's Dragonhide Legguards (238)
-# legs=,id=41667,enchant_id=3853,gem_id=40045/40011
-#
-# Relentless Gladiator's Boots of Triumph (245)
-# feet=,id=41837,enchant_id=3826,gem_id=40127
-#
-# Treads of the Icewalker (258)
-# feet=,id=47077,enchant_id=3232,gem_id=40119/40119
-#
-# Abomination's Bloody Ring (264)
-# finger1=,id=51913,gem_id=40119
-#
-# Ashen Band of Endless Courage (277)
-# finger1=,id=50404,gem_id=40119
-#
-# Bitter Balebrew Charm (200)
-# trinket1=,id=49116
-#
-# Medallion of the Alliance (264)
-# trinket1=,id=51377
-#
-# Glyph of Indomitability (245)
-# trinket1=,id=47735
-#
-# Satrina's Impeding Scarab (245)
-# trinket1=,id=47080
-#
-# Mastercraft Kalu'ak Fishing Pole (200)
-# main_hand=,id=44050,enchant_id=846
-#
-# Distant Land (277)
-# main_hand=,id=50695,enchant_id=3789,gem_id=40117/40117/40125
+talents=-2320322312012021202301-020301
+glyphs=62969/54815/54818
 
-### Additional Character Info
-#
-# upgrade_currencies=
-
-# Checksum: 74f28422`;
+head=,id=65099,enchant_id=4209,gem_id=68778/52220,reforge_id=144
+neck=,id=67137,reforge_id=151
+shoulder=,id=63449,enchant_id=4204,gem_id=52212,reforge_id=147
+back=,id=67134,enchant_id=4100,reforge_id=147
+chest=,id=67135,enchant_id=4102,gem_id=52212/52204,reforge_id=144
+wrist=,id=63454,enchant_id=4258,reforge_id=144
+hands=,id=62433,gem_id=52212,reforge_id=147
+waist=,id=56537,gem_id=52212/52212
+legs=,id=58132,enchant_id=4126,gem_id=52212/52220
+feet=,id=58482,enchant_id=4076,gem_id=52212,reforge_id=147
+finger1=,id=62362,reforge_id=151
+finger2=,id=52348,gem_id=52212,reforge_id=144
+trinket1=,id=59520
+trinket2=,id=56394
+main_hand=,id=55066,enchant_id=4227,reforge_id=144
+ranged=,id=63460,gem_id=52212,reforge_id=147
+`;

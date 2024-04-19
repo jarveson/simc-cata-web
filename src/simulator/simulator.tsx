@@ -27,6 +27,7 @@ export default function Simulator(props: Props) {
   const [status, setStatus] = useState(SimStatus.Loading);
   const [print, setPrint] = useState('');
   const [printErr, setPrintErr] = useState('');
+  const [threadCount, setThreadCount] = useState(8);
 
   const [tabValue, setTabValue] = useState('1');
   const [tab2Value, setTab2Value] = useState('1');
@@ -52,7 +53,8 @@ export default function Simulator(props: Props) {
       return;
 
     const { simc } = props;
-    let promise = simc.addJob(profile, (progress) => {
+    const newProfile =`\n### Default Options ###\niterations=5000\ntarget_error=0.05\nthreads=${threadCount}\njson=/output.json,full_states=1,pretty_print=1\n ### End ### \n${profile}`;
+    let promise = simc.addJob(newProfile, (progress) => {
       setProgress(progress);
     },
       (print) => {
@@ -103,6 +105,8 @@ export default function Simulator(props: Props) {
             </Box>
             <TabPanel value="1" className='overflow-auto'>
               <ProfileInput
+                threadCount={threadCount}
+                onThreadChange={(t) => setThreadCount(t)}
                 onChange={profileHandler}
                 profile={profile}
                 simStatus={status}

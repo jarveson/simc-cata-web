@@ -5,12 +5,12 @@ import Paper from '@mui/material/Paper';
 import React, { useState } from 'react';
 import { SimStatus } from './simstatus';
 
-import { profilestr } from './testprofile';
+import { profile85Preraid, profilestr } from './testprofile';
 import { profileScaleStats } from './testprofile';
 import { SimProgress } from './simcraft';
 import SimProgressBar from './progress';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { Link, Menu, MenuItem } from '@mui/material';
+import { FormControl, InputLabel, Link, Menu, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
 export type PIProps = {
   profile: string
@@ -18,6 +18,8 @@ export type PIProps = {
   simStatus: SimStatus;
   runSim: () => void;
   progress: SimProgress | undefined
+  threadCount: number;
+  onThreadChange: (t: number) => void;
 }
 
 export default function ProfileInput(props : PIProps) {
@@ -52,10 +54,16 @@ export default function ProfileInput(props : PIProps) {
   const handleProfilesClose = () => {
     setAnchorEl(null);
   };
+  const handleThreadsChange = (event: SelectChangeEvent) => {
+    props.onThreadChange(Number(event.target.value));
+  }
+
+  const maxThreads = Math.min(navigator.hardwareConcurrency, 8);
+  const threadItems = Array.from({length: maxThreads}, (_, i) => i + 1)
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={8}>
+      <Grid item xs={7}>
         <Paper className='flex'>
           <TextField
             className={'w-full'}
@@ -72,7 +80,7 @@ export default function ProfileInput(props : PIProps) {
           />
         </Paper>
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={5}>
         <Paper className='p-2 border' elevation={3}>
           <div className='flex flex-col'>
             <div className='m-3'>
@@ -104,12 +112,34 @@ export default function ProfileInput(props : PIProps) {
                   <MenuItem onClick={() => {props.onChange(profileScaleStats); handleProfilesClose()}} disableRipple>
                     Feral 80 Scale Weights (Long)
                   </MenuItem>
+                  <MenuItem onClick={() => {props.onChange(profile85Preraid); handleProfilesClose()}} disableRipple>
+                    Feral 85 preraid
+                  </MenuItem>
               </Menu>
             </div>
-            <div className='shrink-0 m-3'>
-              <Button color="primary" variant="contained" onClick={() => { props.runSim() }} disabled={!buttonEnabled()}>
-                {buttonText()}
-              </Button>
+            <div className='flex flex-row'>
+              <div className='shrink-0 m-3'>
+                <Button color="primary" variant="contained" onClick={() => { props.runSim() }} disabled={!buttonEnabled()}>
+                  {buttonText()}
+                </Button>
+              </div>
+              <div className='m-3 min-w-20'>
+                <FormControl fullWidth>
+                  <InputLabel id="threads-select-label">Threads</InputLabel>
+                  <Select
+                    className='h-9'
+                    labelId="threads-select-label"
+                    id="threads-select"
+                    value={String(props.threadCount)}
+                    label="Threads"
+                    onChange={handleThreadsChange}
+                  >
+                    {
+                      threadItems.map((i) => <MenuItem key={i} value={i}>{i}</MenuItem>)
+                    }
+                  </Select>
+                </FormControl>
+              </div>
             </div>
           </div>
         </Paper>
