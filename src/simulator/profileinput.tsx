@@ -58,7 +58,7 @@ export default function ProfileInput(props : PIProps) {
     props.onThreadChange(Number(event.target.value));
   }
 
-  const maxThreads = Math.min(navigator.hardwareConcurrency, 8);
+  const maxThreads = Math.min(navigator.hardwareConcurrency, 16);
   const threadItems = Array.from({length: maxThreads}, (_, i) => i + 1)
 
   return (

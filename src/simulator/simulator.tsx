@@ -27,7 +27,7 @@ export default function Simulator(props: Props) {
   const [status, setStatus] = useState(SimStatus.Loading);
   const [print, setPrint] = useState('');
   const [printErr, setPrintErr] = useState('');
-  const [threadCount, setThreadCount] = useState(8);
+  const [threadCount, setThreadCount] = useState(16);
 
   const [tabValue, setTabValue] = useState('1');
   const [tab2Value, setTab2Value] = useState('1');
