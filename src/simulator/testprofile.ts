@@ -133,7 +133,7 @@ shoulder=,id=63449,enchant_id=4204,gem_id=52212,reforge_id=147
 back=,id=67134,enchant_id=4100,reforge_id=147
 chest=,id=67135,enchant_id=4102,gem_id=52212/52204,reforge_id=144
 wrist=,id=63454,enchant_id=4258,reforge_id=144
-hands=,id=62433,gem_id=52212,reforge_id=147
+hands=,id=62433,gem_id=52212,enchant_id=4107,reforge_id=147
 waist=,id=56537,gem_id=52212/52212
 legs=,id=58132,enchant_id=4126,gem_id=52212/52220
 feet=,id=58482,enchant_id=4076,gem_id=52212,reforge_id=147
