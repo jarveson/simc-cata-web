@@ -21,13 +21,15 @@ type State = {
 };
 
 export default function Simulator(props: Props) {
+  const maxThreads = Math.min(navigator.hardwareConcurrency, 16);
+
   const [profile, setProfile] = useState('');
   const [result, setResult] = useState(undefined as SimOutputData | undefined);
   const [progress, setProgress] = useState(undefined as SimProgress | undefined);
   const [status, setStatus] = useState(SimStatus.Loading);
   const [print, setPrint] = useState('');
   const [printErr, setPrintErr] = useState('');
-  const [threadCount, setThreadCount] = useState(16);
+  const [threadCount, setThreadCount] = useState(maxThreads);
 
   const [tabValue, setTabValue] = useState('1');
   const [tab2Value, setTab2Value] = useState('1');
@@ -112,6 +114,7 @@ export default function Simulator(props: Props) {
                 simStatus={status}
                 runSim={buttonHandler}
                 progress={progress}
+                maxThreads={maxThreads}
               />
             </TabPanel>
             <TabPanel value="2" className='overflow-auto'>

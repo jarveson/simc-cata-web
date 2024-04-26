@@ -20,6 +20,7 @@ export type PIProps = {
   progress: SimProgress | undefined
   threadCount: number;
   onThreadChange: (t: number) => void;
+  maxThreads: number;
 }
 
 export default function ProfileInput(props : PIProps) {
@@ -58,8 +59,7 @@ export default function ProfileInput(props : PIProps) {
     props.onThreadChange(Number(event.target.value));
   }
 
-  const maxThreads = Math.min(navigator.hardwareConcurrency, 16);
-  const threadItems = Array.from({length: maxThreads}, (_, i) => i + 1)
+  const threadItems = Array.from({length: props.maxThreads}, (_, i) => i + 1)
 
   return (
     <Grid container spacing={2}>
