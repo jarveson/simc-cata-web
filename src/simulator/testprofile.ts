@@ -144,3 +144,41 @@ trinket2=,id=56394
 main_hand=,id=55066,enchant_id=4227,reforge_id=144
 ranged=,id=63460,gem_id=52212,reforge_id=147
 `;
+
+export let profilet11comparison =
+`
+druid="Jaxek"
+level=85
+race=night_elf
+region=tr
+server=classic_beta_pve
+role=attack
+professions=engineering=450/jewelcrafting=500
+spec=feral
+
+talents=-2320322312012021202301-020301
+glyphs=62969/54815/54818
+
+head=,id=65190,enchant_id=4209,gem_id=68778/52220,reforge_id=147
+neck=,id=65107,reforge_id=151
+shoulder=,id=65083,enchant_id=4204,gem_id=52212,reforge_id=146
+back=,id=65035,enchant_id=4100,reforge_id=146
+chest=,id=65192,enchant_id=4102,gem_id=52258/52220,reforge_id=154
+wrist=,id=65050,enchant_id=4258,reforge_id=146
+hands=,id=65189,gem_id=52258,reforge_id=154
+waist=,id=60231,gem_id=52220/52212/52212,reforge_id=144
+legs=,id=65191,enchant_id=4126,gem_id=52204/52220,reforge_id=146
+feet=,id=65144,enchant_id=4076,gem_id=52204,reforge_id=151
+finger1=,id=65082,reforge_id=147
+finger2=,id=65367,suffix_id=137,reforge_id=144
+trinket1=,id=65026
+trinket2=,id=65140
+main_hand=,id=65139,enchant_id=4227,reforge_id=144
+ranged=,id=64671,gem_id=52258,reforge_id=154
+
+
+# no set bonus
+profileset."tier but no bonus"+=disable_4_set=11
+# gloves instead
+profileset."gloves instead"+=hands=,id=77161,gem_id=52212,reforge_id=147
+`;
