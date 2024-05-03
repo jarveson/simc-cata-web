@@ -145,7 +145,7 @@ main_hand=,id=55066,enchant_id=4227,reforge_id=144
 ranged=,id=63460,gem_id=52212,reforge_id=147
 `;
 
-export let profilet11comparison =
+export let profile11comparison =
 `
 druid="Jaxek"
 level=85
