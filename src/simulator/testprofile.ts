@@ -178,7 +178,7 @@ ranged=,id=64671,gem_id=52258,reforge_id=154
 
 
 # no set bonus
-profileset."tier but no bonus"+=disable_4_set=11
+profileset."tier but no bonus"+=disable_4_set=T11
 # gloves instead
-profileset."gloves instead"+=hands=,id=77161,gem_id=52212,reforge_id=147
+profileset."gloves instead"+=hands=,id=65073,gem_id=52258
 `;
