@@ -20,6 +20,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.24.4",
+    "@parcel/compressor-brotli": "^2.12.0",
+    "brotli-cli": "^2.1.0",
     "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.0",
     "eslint": "^9.0.0",
@@ -37,7 +39,7 @@
   },
   "scripts": {
     "start": "parcel src/index.html",
-    "build": "rimraf dist && parcel build src/index.html",
+    "build": "rimraf dist && parcel build src/index.html && brotli-cli compress dist/engine.wasm",
     "lint": "eslint src/ --ext jsx --ext js",
     "fix": "eslint src/ --ext jsx --ext js --fix"
   }

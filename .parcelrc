@@ -1,4 +1,10 @@
 {
   "extends": ["@parcel/config-default"],
-  "reporters":  ["...", "parcel-reporter-static-files-copy"]
+  "reporters":  ["...", "parcel-reporter-static-files-copy"],
+  "compressors": {
+    "*.{html,css,js,svg,map,wasm}": [
+      "...",
+      "@parcel/compressor-brotli"
+    ]
+  }
 }
