@@ -55,7 +55,7 @@ export default function Simulator(props: Props) {
       return;
 
     const { simc } = props;
-    const newProfile =`\n### Default Options ###\niterations=5000\ntarget_error=0.05\nmax_time=180\nthreads=${threadCount}\njson=/output.json,full_states=1,pretty_print=1\n ### End ### \n${profile}`;
+    const newProfile =`\n### Default Options ###\niterations=5000\ntarget_error=0.05\nmax_time=240\nthreads=${threadCount}\njson=/output.json,full_states=1,pretty_print=1\n ### End ### \n${profile}`;
     let promise = simc.addJob(newProfile, (progress) => {
       setProgress(progress);
     },
