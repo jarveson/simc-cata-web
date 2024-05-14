@@ -5,7 +5,7 @@ import Paper from '@mui/material/Paper';
 import React, { useState } from 'react';
 import { SimStatus } from './simstatus';
 
-import { profile85Preraid, profilestr, profile11comparison } from './testprofile';
+import { profile85Preraid, profilestr, profile11comparison, t11trinkets } from './testprofile';
 import { profileScaleStats } from './testprofile';
 import { SimProgress } from './simcraft';
 import SimProgressBar from './progress';
@@ -116,9 +116,11 @@ export default function ProfileInput(props : PIProps) {
                     Feral 85 preraid
                   </MenuItem>
                   <MenuItem onClick={() => {props.onChange(profile11comparison); handleProfilesClose()}} disableRipple>
-                    feral t11 comparison
+                    feral t11 bonus comparison
                   </MenuItem>
-
+                  <MenuItem onClick={() => {props.onChange(t11trinkets); handleProfilesClose()}} disableRipple>
+                    feral t11 trinkets comparison
+                  </MenuItem>
               </Menu>
             </div>
             <div className='flex flex-row'>

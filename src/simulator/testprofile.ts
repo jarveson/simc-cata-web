@@ -182,3 +182,56 @@ profileset."tier but no bonus"+=disable_4_set=T11
 # gloves instead
 profileset."gloves instead"+=hands=,id=65073,gem_id=52258
 `;
+
+export let t11trinkets =
+`
+
+druid="Jaxek"
+level=85
+race=night_elf
+region=tr
+server=classic_beta_pve
+role=attack
+professions=engineering=450/jewelcrafting=500
+spec=feral
+
+talents=-2320322312012021202301-020301
+glyphs=62969/54815/54818
+max_time=300
+
+head=,id=65190,enchant_id=4209,gem_id=68778/52220,reforge_id=147
+neck=,id=65107,reforge_id=151
+shoulder=,id=65083,enchant_id=4204,gem_id=52212,reforge_id=146
+back=,id=65035,enchant_id=4100,reforge_id=146
+chest=,id=65192,enchant_id=4102,gem_id=52258/52220,reforge_id=154
+wrist=,id=65050,enchant_id=4258,reforge_id=146
+hands=,id=65189,gem_id=52258,reforge_id=154
+waist=,id=60231,gem_id=52220/52212/52212,reforge_id=144
+legs=,id=65191,enchant_id=4126,gem_id=52204/52220,reforge_id=146
+feet=,id=65144,enchant_id=4076,gem_id=52204,reforge_id=151
+finger1=,id=65082,reforge_id=140
+finger2=,id=65367,suffix_id=137,reforge_id=144
+
+main_hand=,id=65139,enchant_id=4227,reforge_id=144
+ranged=,id=64671,gem_id=52258,reforge_id=154
+
+
+profileset."dmc"=trinket1=,id=62051
+profileset."riddle"=trinket1=,id=62468
+profileset."key, hit->mast"+=trinket1=,id=56328,reforge_id=140
+profileset."key, hit->mast"+=neck=,id=65107
+profileset."key, hit->mast"+=main_hand=,id=65139,enchant_id=4227
+profileset."prestors talisman"=trinket1=,id=65026
+profileset."esssence of the cyclone"=trinket1=,id=65140
+profileset."fluid death, hit->mast"=trinket1=,id=58181,reforge_id=140
+profileset."fluid death, hit->mast"+=neck=,id=65107
+profileset."fluid death, hit->mast"+=main_hand=,id=65139,enchant_id=4227
+profileset."unheeded warning"=trinket1=,id=59520
+profileset."alch +agi-gem"=trinket1=,id=68776,gem_id=52212
+profileset."jc panther (346) hit->mast"=trinket1=,id=52199,reforge_id=140
+profileset."jc panther (346) hit->mast"+=neck=,id=65107
+profileset."jc panther (346) hit->mast"+=main_hand=,id=65139,enchant_id=4227
+profileset."grace of herald (346)"+=trinket1=,id=56295
+profileset."tias grace (346)"+=trinket1=,id=56394
+profileset."skardyns grace (346)"+=trinket1=,id=56440
+`;
