@@ -151,7 +151,7 @@ export default function ProfileInput(props : PIProps) {
         </Paper>
         <Paper className='p-3 border mt-5' elevation={3}>
           {'Cata-Beta Simc addon '}
-          <Link href="./Simulationcraft-beta-440.zip" underline="always">
+          <Link href="./Simulationcraft-440.zip" underline="always">
             found here
           </Link>
           <br/>

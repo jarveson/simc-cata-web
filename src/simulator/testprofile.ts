@@ -197,7 +197,6 @@ spec=feral
 
 talents=-2320322312012021202301-020301
 glyphs=62969/54815/54818
-max_time=300
 
 head=,id=65190,enchant_id=4209,gem_id=68778/52220,reforge_id=147
 neck=,id=65107,reforge_id=151
